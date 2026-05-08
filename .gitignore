@@ -38,6 +38,12 @@ output/
 *.json
 *.csv
 
+# Git
+.git/
+
+# Claude
+.claude/
+
 # pytest
 .pytest_cache/
 .coverage
