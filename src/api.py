@@ -12,6 +12,9 @@ class FilfoxClient:
         self.base_url = base_url
         self.max_retries = max_retries
         self.session = requests.Session()
+        self.session.headers.update({
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        })
 
     def _get(self, url: str, params: dict[str, Any]) -> dict[str, Any]:
         last_exception = None
@@ -22,7 +25,12 @@ class FilfoxClient:
                 return response.json()
             except requests.exceptions.RequestException as e:
                 last_exception = e
-                if hasattr(response, 'status_code') and 400 <= response.status_code < 500:
+                status_code = getattr(response, 'status_code', None)
+                if status_code == 429:
+                    wait = 2 ** attempt + 1
+                    time.sleep(wait)
+                    continue
+                if status_code and 400 <= status_code < 500:
                     raise
                 wait = 2 ** attempt
                 time.sleep(wait)

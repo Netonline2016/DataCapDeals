@@ -21,7 +21,7 @@ def parse_args(args: List[str]) -> argparse.Namespace:
         "--page-size", type=int, default=100, help="Items per page"
     )
     parser.add_argument(
-        "--delay", type=int, default=200, help="Milliseconds between page requests"
+        "--delay", type=int, default=500, help="Milliseconds between page requests"
     )
     return parser.parse_args(args)
 

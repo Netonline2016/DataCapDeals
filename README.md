@@ -20,7 +20,7 @@ python -m src.main --address f1ogcgz4a6bmsmcdk3nnksw4yac5syis4tpqxd7by --output-
 - `--address` / `-a`: Target provider or client address (required)
 - `--output-dir` / `-o`: Output directory (default: `./output`)
 - `--page-size`: Items per page (default: 100)
-- `--delay`: Milliseconds between page requests (default: 200)
+- `--delay`: Milliseconds between page requests (default: 500)
 
 ## Output
 
